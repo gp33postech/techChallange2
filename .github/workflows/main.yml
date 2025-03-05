@@ -17,8 +17,8 @@ jobs:
           - 27017:27017
 
     env:
-       DOCKER_USERNAME: ${{ env.DOCKER_USERNAME }}
-       DOCKER_PASSWORD: ${{ env.DOCKER_PASSWORD }}
+       DOCKER_USERNAME: gp33postech
+       DOCKER_PASSWORD: gp33postech@2025
 
     steps:
       - name: Checkout repository
