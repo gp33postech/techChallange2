@@ -28,4 +28,4 @@ jobs:
         run: |
           docker login -u gp33postech -p gp33postech@2025
           docker build -t gp33postech/api_blog:latest .
-          docker push gp33postech/api_blog:latest
+          docker push gp33postech/api_blog:latest ---
