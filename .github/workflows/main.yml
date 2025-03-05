@@ -16,10 +16,6 @@ jobs:
         ports:
           - 27017:27017
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]
-
     env:
        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
