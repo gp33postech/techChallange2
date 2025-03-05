@@ -1,0 +1,43 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mongo:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+
+    env:
+       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Wait for MongoDB to start
+        run: |
+          for i in `seq 1 30`; do
+            nc -z localhost 27017 && echo Success && exit 0
+            echo -n .
+            sleep 1
+          done
+          echo Failed to connect to MongoDB && exit 1
+
+      - name: Run tests
+        env:
+          MONGO_URL: mongodb://localhost:27017/test
+        run: npm test
