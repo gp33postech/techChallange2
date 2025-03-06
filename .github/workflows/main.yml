@@ -17,8 +17,8 @@ jobs:
           - 27017:27017
 
     env:
-       DOCKER_USERNAME: gp33postech
-       DOCKER_PASSWORD: gp33postech@2025
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     steps:
       - name: Checkout repository
@@ -26,6 +26,6 @@ jobs:
 
       - name: Wait for MongoDB to start
         run: |
-          docker login -u gp33postech -p gp33postech@2025
-          docker build -t gp33postech/api_blog:latest .
-          docker push gp33postech/api_blog:latest ---
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker build -t $DOCKER_USERNAME/api_blog:latest .
+          docker push $DOCKER_USERNAME/api_blog:latest
