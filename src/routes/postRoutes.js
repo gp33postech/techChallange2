@@ -1,6 +1,50 @@
 const express = require('express');
-const router = express.Router();
+const router = express();
 const postController = require('../controllers/postController');
+
+router.use(express.json());
+
+/**
+ * @swagger
+ * /posts:
+ *   get:
+ *     summary: Busca todos os Posts
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: string
+ *               
+ *     responses:
+ *       200:
+ *         description: Consulta Realizada com Sucesso
+ */
+router.get('/posts', postController.getAllPosts);
+
+/**
+ * @swagger
+ * /posts:
+ *   get:
+ *     summary: Busca um Post por Id
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: string
+ *               
+ *     responses:
+ *       200:
+ *         description: Consulta Realizada com Sucesso
+ */
+router.get('/posts/:id', postController.getPostById);
 
 /**
  * @swagger
@@ -101,7 +145,7 @@ router.delete('/posts/:id', postController.deletePost);
 /**
  * @swagger
  * /posts/search:
- *   get:
+ *   search:
  *     summary: Busca por posts
  *     parameters:
  *       - in: query
@@ -114,6 +158,6 @@ router.delete('/posts/:id', postController.deletePost);
  *       200:
  *         description: Lista de posts que correspondem ao critério de busca
  */
-router.get('/posts/search', postController.searchPosts);
+router.search('/posts/search', postController.searchPosts);
 
 module.exports = router;
