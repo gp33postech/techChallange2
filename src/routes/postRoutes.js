@@ -9,16 +9,7 @@ router.use(express.json());
  * /posts:
  *   get:
  *     summary: Busca todos os Posts
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               id:
- *                 type: string
- *               
+ *       
  *     responses:
  *       200:
  *         description: Consulta Realizada com Sucesso
@@ -27,18 +18,13 @@ router.get('/posts', postController.getAllPosts);
 
 /**
  * @swagger
- * /posts:
+ * /posts/{id}:
  *   get:
  *     summary: Busca um Post por Id
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               id:
- *                 type: string
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
  *               
  *     responses:
  *       200:
@@ -149,9 +135,9 @@ router.delete('/posts/:id', postController.deletePost);
  *     summary: Busca por posts
  *     parameters:
  *       - in: query
- *         name: title
+ *         name: query
  *         required: false
- *         description: Titulo do post a ser buscado
+ *         description: Query a ser buscada
  *         schema:
  *           type: string
  *     responses:
