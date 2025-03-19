@@ -145,7 +145,7 @@ router.delete('/posts/:id', postController.deletePost);
 /**
  * @swagger
  * /posts/search:
- *   search:
+ *   post:
  *     summary: Busca por posts
  *     parameters:
  *       - in: query
@@ -158,6 +158,6 @@ router.delete('/posts/:id', postController.deletePost);
  *       200:
  *         description: Lista de posts que correspondem ao critério de busca
  */
-router.search('/posts/search', postController.searchPosts);
+router.post('/posts/search', postController.searchPosts);
 
 module.exports = router;

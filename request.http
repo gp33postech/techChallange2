@@ -1,5 +1,5 @@
 ### Listar todos os usuários
-GET http://localhost:5000/api/posts
+GET http://localhost:5000/api/posts/
 Content-Type: application/json
 
 ### Criar um novo post
@@ -14,11 +14,11 @@ Content-Type: application/json
 }
 
 ### Obter um post pelo ID
-GET http://localhost:5000/api/posts/67d6e4a6c2ab306e09f20448
+GET http://localhost:5000/api/posts/67da10d34e83afe51756d551
 Content-Type: application/json
 
 ### Atualizar um post
-PUT http://localhost:5000/api/posts/67ca059745547027163ec1a8
+PUT http://localhost:5000/api/posts/67da10d34e83afe51756d551
 Content-Type: application/json
 
 {
@@ -30,10 +30,10 @@ Content-Type: application/json
 }
 
 ### Deletar um post
-DELETE http://localhost:5000/api/posts/67ca077645547027163ec1b1
+DELETE http://localhost:5000/api/posts/67da10d34e83afe51756d551
 Content-Type: "application/json"
 
 
 ### Search um post
-DELETE http://localhost:5000/api/posts/search
+POST http://localhost:5000/api/posts/search?query=post
 Content-Type: "application/json"

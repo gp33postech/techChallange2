@@ -80,9 +80,9 @@ describe('API de Postagem', () => {
 
     it('Deveria pesquisar uma postagem', async () => {
         //Arrange
-        const postData = 'Post';        
+        const postData = 'Title';        
         
-        const getUserResponse = await request(route).search('/posts/search/').query({query: postData});
+        const getUserResponse = await request(route).post('/posts/search/').query({query: postData});
         
 
         //Assert       
