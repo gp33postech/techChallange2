@@ -10,6 +10,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+
 mongoose.connect(process.env.MONGO_URI, {
  useNewUrlParser: true,
  useUnifiedTopology: true
@@ -28,11 +29,11 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: 'http://localhost:4000/api',
+                url: `http://localhost:${process.env.PORT}/api`,
             },
         ],
     },
-    apis: ['./routes/postRoutes.js'],
+    apis: ['./src/routes/postRoutes.js'],
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -42,7 +43,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use('/api', postRoutes);
 
 // Configurando o servidor para escutar em uma porta
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
