@@ -65,8 +65,7 @@ const deletePost = async (req, res) => {
 // Busca posts por palavra-chave
 const searchPosts = async (req, res) => {
     try {
-        const { query } = req.query;
-        console.log(query);
+        const { query } = req.query;     
         const posts = await Post.find({
             $or: [
                 { title: { $regex: query, $options: 'i' } },
