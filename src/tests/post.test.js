@@ -16,7 +16,7 @@ describe('API de Postagem', () => {
         await mongoose.disconnect();
     });
 
-    it('Deveria retorar todos as postagens', async () => {
+    it('Deveria retornar todos as postagens', async () => {
         //Act
         const response = await request(route).get('/posts')
 
