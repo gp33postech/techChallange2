@@ -1,0 +1,39 @@
+### Listar todos os usuários
+GET http://localhost:5000/api/posts/
+Content-Type: application/json
+
+### Criar um novo post
+POST http://localhost:5000/api/posts
+Content-Type: application/json
+
+{
+  "title": "Sample Title 4",
+  "description": "This is a sample description.",
+  "image": "https://example.com/sample-image.jpg",
+  "author": "Author Name"
+}
+
+### Obter um post pelo ID
+GET http://localhost:5000/api/posts/67da10d34e83afe51756d551
+Content-Type: application/json
+
+### Atualizar um post
+PUT http://localhost:5000/api/posts/67da10d34e83afe51756d551
+Content-Type: application/json
+
+{
+  "title": "Sample Title 2",
+  "description": "This is a sample description.",
+  "image": "https://example.com/sample-image.jpg",
+  "author": "Author Name",
+  "updatedAt": "2025-03-06T20:26:00Z"
+}
+
+### Deletar um post
+DELETE http://localhost:5000/api/posts/67da10d34e83afe51756d551
+Content-Type: "application/json"
+
+
+### Search um post
+POST http://localhost:5000/api/posts/search?query=post
+Content-Type: "application/json"
