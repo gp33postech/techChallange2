@@ -33,7 +33,7 @@ Este projeto foi desenvolvido como parte das atividades de da Pós-tech Fase 2, 
 1. Clone o repositório:
 
    ```sh
-   git clone https://github.com/seu-usuario/techChallange2.git
+   git clone https://github.com/gp33postech/techChallange2.git
    cd techChallange2
 
 2. Inicie a aplicação com Docker:
