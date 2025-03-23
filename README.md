@@ -147,7 +147,7 @@ OU
 ## Relatos e desafios no desenvolvimento
 Alguns dos desafios encontrados pela equipe durante o desenvolvimento foram a configuração do ambiente, familiarização com as ferramentas apresentadas em aula e integração de todo o conteúdo teórico com a abordagem prática exigida no desafio em grupo.
 
-## GRUPO 33
+## GRUPO 39
 #### ADRIANO BATISTA DE ARAÚJO - RM: 360317
 #### FILIPE ARAÚJO DA COSTA - RM: 360594
 #### GABRIELA MIDORI AFUSO - RM: 360009 
