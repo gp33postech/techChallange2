@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const postRoutes = require('./routes/postRoutes');
+const cors = require('cors');
 
 dotenv.config();
 
@@ -38,6 +39,13 @@ const swaggerOptions = {
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+// Configuração do CORS
+app.use(cors({
+    origin: 'http://localhost:3000', // ou a URL do seu frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
 
 // Usando as rotas de posts
 app.use('/api', postRoutes);
