@@ -38,19 +38,7 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-// Configuração do CORS
-app.use(cors({
-  origin: function (origin, callback) {
-    const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true,
-}));
+
 
 
 // Usando as rotas de posts
