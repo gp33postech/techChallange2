@@ -1,4 +1,4 @@
-version: '3.8'
+
 services:
   mongo:
     image: mongo
@@ -15,3 +15,10 @@ services:
       - mongo
     env_file:
       - .env
+  frontend:
+    build: .
+    container_name: app_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - app
