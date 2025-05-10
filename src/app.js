@@ -1,23 +1,21 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
-const postRoutes = require('./routes/postRoutes');
 const cors = require('cors');
+const postRoutes = require('./routes/postRoutes');
+const connectDB = require('./config/db'); // Importando a função de conexão
 
 dotenv.config();
 
 const app = express();
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
+app.use(cors());
 
-mongoose.connect(process.env.MONGO_URI, {
- useNewUrlParser: true,
- useUnifiedTopology: true
-})
-.then(() => console.log("Conectado ao MongoDB"))
-.catch(err => console.error("Erro ao conectar ao MongoDB:", err));
+// Conectar ao banco de dados usando a função do arquivo db.js
+connectDB();
 
 // Configuração do Swagger
 const swaggerOptions = {
@@ -42,10 +40,18 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Configuração do CORS
 app.use(cors({
-    origin: 'http://localhost:3000', // ou a URL do seu frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
+  origin: function (origin, callback) {
+    const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
 }));
+
 
 // Usando as rotas de posts
 app.use('/api', postRoutes);

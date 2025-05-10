@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 // Função para conectar ao MongoDB
 const connectDB = async () => {
     try {
-        const conn = await mongoose.connect('mongodb://mongo:27017/api-blog', {
+        const conn = await mongoose.connect('mongodb://localhost:27017/api-blog', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
