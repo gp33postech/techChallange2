@@ -21,9 +21,12 @@ services:
       - .env
 
   frontend:
-    build: .
+    build:
+      context: ../frontend
     container_name: app_frontend
     ports:
       - "3000:80"
     depends_on:
       - app
+    env_file:
+      - ../frontend/.env.docker
