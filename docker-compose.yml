@@ -7,6 +7,8 @@ services:
     restart: always
     ports:
       - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
 
   app:
     build: .
@@ -15,18 +17,10 @@ services:
       - "5000:5000"
     depends_on:
       - mongo
-    environment:
-      - MONGODB_URI=mongodb://mongo_db:27017/api-blog
     env_file:
       - .env
+    environment:
+      - MONGODB_URI=mongodb://mongo_db:27017/api-blog
 
-  frontend:
-    build:
-      context: ../frontend
-    container_name: app_frontend
-    ports:
-      - "3000:80"
-    depends_on:
-      - app
-    env_file:
-      - ../frontend/.env.docker
+volumes:
+  mongo_data:
