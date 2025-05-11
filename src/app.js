@@ -14,20 +14,23 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // ✅ Configuração de CORS com origem permitida
 const allowedOrigins = [
-  'http://localhost:5173', // desenvolvimento
+  'http://localhost:3000',           // frontend via docker
+  'http://localhost:5173',           // frontend via vite local
   'https://techchallenge-front.onrender.com' // produção no Render
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Permite chamadas sem origin (como do Swagger local) e chamadas da lista
+    // Permitir chamadas sem origin (como Swagger local) e chamadas da lista
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
-  }
+  },
+  credentials: true
 }));
+
 
 // Conectar ao banco de dados
 connectDB();
